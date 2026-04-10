@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Analyse- und Beratungstool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Analyse- und Beratungstool für Energiespeicher & Ladeinfrastruktur</h1>
+
+<div class="card">
+    <h2>0. Standort</h2>
+    Standort (PLZ oder Ort)
+    <input id="location" type="text" placeholder="z. B. 88400 Biberach">
+    <button id="loadLocationBtn">Netzparameter laden</button>
+    <div id="locationInfo" style="margin-top:10px; font-style:italic;"></div>
+</div>
+
+<div class="card">
+    <h2>1. Standort & Netz</h2>
+    Netzanschlussleistung (kW)
+    <input id="gridPower" type="number" value="800">
+    Leistungspreis (€/kW/Jahr)
+    <input id="powerPrice" type="number" value="120">
+    Energiepreis (€/kWh)
+    <input id="energyPrice" type="number" value="0.25">
+</div>
+
+<div class="card">
+    <h2>2. Verbrauch</h2>
+    Maximale bestehende Last (kW)
+    <input id="baseLoad" type="number" value="620">
+
+    Betriebstyp
+    <select id="siteType">
+        <option value="office">Büro / Standard</option>
+        <option value="production">Produktion / Maschinenbetrieb</option>
+        <option value="fleet">Flotte / Logistik</option>
+    </select>
+</div>
+
+<div class="card">
+    <h2>3. Ladeinfrastruktur</h2>
+    Anzahl Ladepunkte
+    <input id="chargers" type="number" value="10">
+
+    Ladeleistung pro Punkt (kW)
+    <input id="chargerPower" type="number" value="22">
+
+    Gleichzeitigkeit (%)
+    <input id="simultaneity" type="number" value="70">
+</div>
+
+<div class="card">
+    <h2>4. Energiespeicher</h2>
+    Speicherkapazität (kWh)
+    <input id="storageCapacity" type="number" value="300">
+
+    Entladeleistung (kW)
+    <input id="storagePower" type="number" value="150">
+
+    Investitionskosten (€)
+    <input id="storageCost" type="number" value="180000">
+</div>
+
+<button id="analyseBtn">Analyse durchführen</button>
+
+<div id="resultCard" class="card result">
+    <h2>Ergebnisprotokoll</h2>
+    <div id="output">Noch keine Analyse durchgeführt.</div>
+</div>
+
+<div class="chart-row two-charts">
+    <div class="card chart-card">
+        <h3>Lastspitzenvergleich</h3>
+        <canvas id="peakChart"></canvas>
+    </div>
+
+    <div class="card chart-card">
+        <h3>Vergleich Leistungskosten</h3>
+        <canvas id="costChart"></canvas>
+    </div>
+</div>
+
+<div class="card chart-card single-chart">
+    <h3>Tageslastgang inkl. Speicher</h3>
+    <canvas id="dailyLoadChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
